@@ -56,36 +56,26 @@ As required, you can test with various sizes (n = 10, 20, 30, 50):
 ./sasaki_time_optimal_sort 30
 ./sasaki_time_optimal_sort 50
 
-./alternative_sort 10
-./alternative_sort 20
-./alternative_sort 30
-./alternative_sort 50
+./alternate_time_optimal_sort 10
+./alternate_time_optimal_sort 20
+./alternate_time_optimal_sort 30
+./alternate_time_optimal_sort 50
 ```
-
-## Comparison of Algorithms
-
-1. **Odd-Even Transposition Sort**: Simple but not time-optimal. Requires O(n) phases in the worst case.
-
-2. **Sasaki's Time-Optimal Algorithm**: Optimally completes in exactly n steps. More complex implementation but guaranteed optimal performance.
-
-3. **Alternative Time-Optimal Algorithm**: A divide-and-conquer approach inspired by bitonic sort but adapted for a line network. Also aims for optimal time complexity.
 
 ## Results
 
 Here's a comparison table showing the execution times and number of phases for different algorithms with varying numbers of processors:
 
-| Algorithm                | n=10     | n=20     | n=30     | n=50     |
-|--------------------------|----------|----------|----------|----------|
-| Odd-Even Transposition   | x.xx sec | x.xx sec | x.xx sec | x.xx sec |
-| Sasaki's Algorithm       | x.xx sec | x.xx sec | x.xx sec | x.xx sec |
-| Alternative Algorithm    | x.xx sec | x.xx sec | x.xx sec | x.xx sec |
+| Algorithm                | n=10      | n=20      | n=30      | n=50      |
+|--------------------------|---------- |---------- |---------- |---------- |
+| Odd-Even Transposition   | 0.007977s | 0.029694s | 0.062100s | 0.089038s |
+| Sasaki's Algorithm       | 0.000143s | 0.000291s | 0.000537s | 0.001142s |
+| Alternative Algorithm    | 0.001476s | 0.012928s | 0.022273s | 0.052802s |
 
-(Note: Replace x.xx with actual execution times after running the programs)
+## Time and Space Complexities
 
-## Implementation Notes
-
-Each algorithm is implemented as a discrete event simulator with processors that can only communicate with their immediate neighbors in a line network. The primitive operations used are:
-
-- `send`: Send a value from one processor to another
-- `receive`: Receive a value into a processor
-- `compareAndSwap`: Compare and swap values if needed
+| Algorithm                | Data Structure              | Time Complexity | Space Complexity  |
+|--------------------------|-----------------------------|-----------------|-------------------|
+| Odd-Even Transposition   | Linked List with Threads    | O(n²)           | O(n)              |
+| Sasaki's Algorithm       | Linked List with Elements   | O(n)            | O(n)              |
+| Alternative Algorithm    | Array with Threads          | O(n log n)      | O(n)              |
